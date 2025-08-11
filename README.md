@@ -28,7 +28,7 @@ O-Hunter is a comprehensive web vulnerability scanner that automatically tests f
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/OmarHany-sudo/O-Hunter
 cd O-Hunter
 
 # Build and run with Docker Compose
@@ -41,7 +41,7 @@ docker-compose up --build
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/OmarHany-sudo/O-Hunter
 cd O-Hunter
 
 # Create virtual environment
