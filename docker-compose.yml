@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  ohunter:
+    build: .
+    environment:
+      - PYTHONPATH=/app
+      - PORT=${PORT:-5000}  # قراءة البورت من البيئة أو 5000 افتراضي
+    volumes:
+      - ./reports:/app/reports
+    restart: unless-stopped
+
+
+
+  # Optional: Add a database service for production use
+  # db:
+  #   image: postgres:13
+  #   environment:
+  #     POSTGRES_DB: ohunter
+  #     POSTGRES_USER: ohunter
+  #     POSTGRES_PASSWORD: ohunter_password
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   restart: unless-stopped
+
+# volumes:
+#   postgres_data:
+
