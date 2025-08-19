@@ -1,15 +1,13 @@
 FROM python:3.11-slim
 
-# تحديد مجلد العمل
 WORKDIR /app
 
-# تثبيت المتطلبات الأساسية
-RUN apt-get update && apt-get install -y \
-    curl \
-    nodejs \
-    npm \
-    && npm install -g pnpm \
-    && rm -rf /var/lib/apt/lists/*
+# تثبيت curl و Nodejs حديث + pnpm
+RUN apt-get update && apt-get install -y curl build-essential && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g pnpm && \
+    rm -rf /var/lib/apt/lists/*
 
 # تثبيت باكدجات Python
 COPY requirements.txt .
@@ -21,15 +19,14 @@ COPY . .
 # ===== Build Frontend =====
 WORKDIR /app/gui/ohunter-ui
 RUN pnpm install && pnpm run build
+RUN mkdir -p /app/core/static && cp -r build/* /app/core/static/
 
 # رجوع لمجلد الباك إند
 WORKDIR /app
 
 # تعيين متغيرات البيئة
 ENV PYTHONPATH=/app
-ENV PORT=8080
-
-# فتح البورت
+# Railway يعطي PORT تلقائي
 EXPOSE $PORT
 
 # الأمر الافتراضي للتشغيل
