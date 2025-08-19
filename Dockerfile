@@ -19,6 +19,8 @@ COPY . .
 # ===== Build Frontend =====
 WORKDIR /app/gui/ohunter-ui
 RUN pnpm install && pnpm run build
+
+# نقل الـ build إلى static folder
 RUN mkdir -p /app/core/static && cp -r build/* /app/core/static/
 
 # رجوع لمجلد الباك إند
@@ -26,8 +28,7 @@ WORKDIR /app
 
 # تعيين متغيرات البيئة
 ENV PYTHONPATH=/app
-# Railway يعطي PORT تلقائي
 EXPOSE $PORT
 
-# الأمر الافتراضي للتشغيل
+# تشغيل السيرفر
 CMD ["python", "core/app.py"]
