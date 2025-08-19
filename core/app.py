@@ -1,6 +1,11 @@
 import sys
 import os
+
+# إضافة جذر المشروع
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# إضافة مجلد modules عشان Python يلاقي الموديولات
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'modules')))
+
 
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
