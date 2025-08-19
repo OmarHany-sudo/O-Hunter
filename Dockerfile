@@ -27,7 +27,7 @@ RUN mkdir -p /app/core/static && cp -r build/* /app/core/static/
 WORKDIR /app
 
 # تعيين متغيرات البيئة
-ENV PYTHONPATH=/app
+ENV PYTHONPATH=/app:/app/core:/app/modules
 EXPOSE $PORT
 
 # تشغيل السيرفر
