@@ -94,4 +94,4 @@ if __name__ == '__main__':
     print(f"Static folder: {app.static_folder}")
     print(f"Frontend available: {os.path.exists(os.path.join(app.static_folder, 'index.html'))}")
     
-    app.run(debug=debug_mode, host='0.0.0.0', port=port)
+app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
